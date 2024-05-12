@@ -5,11 +5,8 @@ import { FaLinkedinIn } from "react-icons/fa";
 function Footer(props) {
   let date = new Date();
   let year = date.getFullYear();
-
-  const textColor = props.mode === 'dark' ? 'white' : 'rgb(65, 65, 65)';
-
   return (
-    <footer className="footer" style={{ background: props.mode === 'dark' ? 'rgb(43, 48, 53)' : 'rgb(246, 246, 250)', color: textColor }}>
+    <footer className="footer">
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-4 footer-copywright">
@@ -23,7 +20,7 @@ function Footer(props) {
               <li className="social-icons">
                 <a
                   href="https://github.com/MDPerrfan"
-                  style={{ color: textColor }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -33,7 +30,7 @@ function Footer(props) {
               <li className="social-icons">
                 <a
                   href="https://www.facebook.com/mdparves.erfan.3/"
-                  style={{ color: textColor }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -43,7 +40,7 @@ function Footer(props) {
               <li className="social-icons">
                 <a
                   href="https://www.linkedin.com/in/mohammed-parves-6635212aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                  style={{ color: textColor }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -53,7 +50,7 @@ function Footer(props) {
               <li className="social-icons">
                 <a
                   href="mailto: mdperrfan@gmail.com"
-                  style={{ color: textColor }}
+                  
                   target="_blank"
                   rel="noopener noreferrer"
                 >

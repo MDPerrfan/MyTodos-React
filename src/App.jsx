@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import './App.css'
+import './Style.css'
 import Navbar from './Componenst/Navbar'
 import Footer from './Componenst/Footer'
 import Todo from './Componenst/Todo'

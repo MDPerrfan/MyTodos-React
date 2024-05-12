@@ -1,10 +1,10 @@
 import React from 'react'
-
+import '../Style.css'
 export default function Todo() {
   return (
     <div>
+        <div className="todo-section">
         <h1>Todo List</h1>
-        <div className="todo-container" style={{minHeight:"100vh"}}>
         <ul>
             <li>
 
