@@ -1,58 +1,59 @@
-    .todo-section {
-        background-color: rgb(26, 26, 31);
-        color: white;
-        min-height: 100vh;
-    }
-    
-    .coral {
-        color: rgb(255, 80, 80);
-    }
-    
-    .footer {
-        background-color: rgb(36, 36, 39)!important;
-        bottom: 0 !important;
-        padding-top: 10px !important;
-        padding-bottom: 8px !important;
-    }
-    
+.todo-section {
+    background-color: rgb(26, 26, 31);
+    color: white;
+    min-height: 88vh;
+    padding-top: 4rem;
+}
+
+.coral {
+    color: rgb(255, 80, 80);
+}
+
+.footer {
+    background-color: rgb(36, 36, 39)!important;
+    bottom: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 8px !important;
+}
+
+.footer-copywright {
+    text-align: center !important;
+}
+
+.footer-body {
+    z-index: 1;
+    text-align: center !important;
+}
+
+@media (max-width: 767px) {
     .footer-copywright {
         text-align: center !important;
     }
-    
     .footer-body {
-        z-index: 1;
         text-align: center !important;
     }
-    
-    @media (max-width: 767px) {
-        .footer-copywright {
-            text-align: center !important;
-        }
-        .footer-body {
-            text-align: center !important;
-        }
-        .my-3 {
-            margin-top: .2rem !important;
-        }
+    .my-3 {
+        margin-top: .2rem !important;
     }
-    
-    .footer h3 {
-        font-size: .8em;
-        color: rgb(209, 204, 204) !important;
-        margin-top: 0.5em !important;
-        margin-bottom: 0.5em !important;
-    }
-    
-    .footer-icons {
-        display: flex;
-        justify-content: space-around;
-        list-style-type: none;
-        align-items: center;
-        /*     margin-top: 0.4em !important;
+}
+
+.footer h3 {
+    font-size: .8em;
+    color: rgb(209, 204, 204) !important;
+    margin-top: 0.5em !important;
+    margin-bottom: 0.5em !important;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    align-items: center;
+    /*     margin-top: 0.4em !important;
         margin-bottom: 0.4em !important; */
-        padding: 0 !important;
-    }
-    
-    .social-icons a {
-        color: rgb(198, 202, 206)!important;
-    }
+    padding: 0 !important;
+}
+
+.social-icons a {
+    color: rgb(198, 202, 206)!important;
+}
