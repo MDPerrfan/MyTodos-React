@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function Todo() {
@@ -11,25 +11,37 @@ function Todo() {
 
   const handleAddTodo = () => {
     if (inputValue.trim() !== '') {
-      setTodos([...todos, { id: uuidv4(), task: inputValue, isCompleted: false }]);
+      const newTodo = {
+        id: uuidv4(),
+        task: inputValue,
+        isCompleted: false
+      };
+      setTodos([...todos, newTodo]);
     }
     setInputValue('');
   };
 
-  const handleDelete = id => {
+  const handleDelete = (e, id) => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  const handleEdit = id => {
-    // Logic for editing a todo item
+  const handleEdit = (e, id) => {
+    let editedTodo = todos.find(todo => todo.id === id);
+    setInputValue(editedTodo.task);
+    let newTodos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.task = inputValue;
+      }
+      return todo;
+    });
+    setTodos(newTodos);
   };
 
-  const handleCheckbox = id => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-      )
-    );
+  const handleCheckbox = (id) => {
+    let index = todos.findIndex(todo => todo.id === id);
+    let newTodos = [...todos];
+    newTodos[index].isCompleted = !newTodos[index].isCompleted;
+    setTodos(newTodos);
   };
 
   return (
@@ -43,7 +55,7 @@ function Todo() {
           onChange={handleOnChange}
         />
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-secondary "
           type="button"
           id="button-addon2"
           onClick={handleAddTodo}
@@ -59,7 +71,7 @@ function Todo() {
           </div>
         ) : (
           todos.map(todo => (
-            <li className=""style={{textDecoration:todo.isCompleted?"line-through":""}} key={todo.id}>
+            <li className="justify-content-between" style={{textDecoration: todo.isCompleted ? "line-through" : ""}} key={todo.id}>
               <input
                 className="form-check-input"
                 onChange={() => handleCheckbox(todo.id)}
@@ -68,14 +80,14 @@ function Todo() {
               />
               {todo.task}
               <button
-                className="btn btn-outline-secondary mx-4"
-                onClick={() => handleEdit(todo.id)}
+                className="btn btn-outline-secondary mx-4 my-3"
+                onClick={(e) => handleEdit(e, todo.id)}
               >
                 Edit
               </button>
               <button
                 className="btn btn-outline-secondary mx-2"
-                onClick={() => handleDelete(todo.id)}
+                onClick={(e) => handleDelete(e, todo.id)}
               >
                 Delete
               </button>
