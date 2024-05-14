@@ -28,12 +28,9 @@ function Todo() {
   const handleEdit = (e, id) => {
     let editedTodo = todos.find(todo => todo.id === id);
     setInputValue(editedTodo.task);
-    let newTodos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.task = inputValue;
-      }
-      return todo;
-    });
+    let newTodos = todos.filter(item=>{
+      return item.id!==id
+    }); 
     setTodos(newTodos);
   };
 
