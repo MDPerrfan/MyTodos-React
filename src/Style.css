@@ -1,8 +1,18 @@
 .todo-section {
-    background-color: rgb(26, 26, 31);
-    color: white;
-    min-height: 88vh;
+    color: rgb(235, 235, 235);
+    min-height: 80vh;
     padding-top: 4rem;
+    /* border: 1px solid; */
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    /*    width: 350px;
+    height: 500px; */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
 .coral {

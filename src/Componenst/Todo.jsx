@@ -1,10 +1,9 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-function Todo() {
+function Todo(props) {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
-
+  
   const handleOnChange = event => {
     setInputValue(event.target.value);
   };
@@ -21,16 +20,14 @@ function Todo() {
     setInputValue('');
   };
 
-  const handleDelete = (e, id) => {
+  const handleDelete = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  const handleEdit = (e, id) => {
+  const handleEdit = (id) => {
     let editedTodo = todos.find(todo => todo.id === id);
     setInputValue(editedTodo.task);
-    let newTodos = todos.filter(item=>{
-      return item.id!==id
-    }); 
+    let newTodos = todos.filter(item => item.id !== id);
     setTodos(newTodos);
   };
 
@@ -40,10 +37,9 @@ function Todo() {
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   };
-
   return (
-    <div className="container todo-section">
-      <div className="input-group mb-3">
+    <div className={`container todo-section ${props.isBlackTheme ? 'black-theme' : 'white-theme'}`}>
+      <div className="d-flex">
         <input
           type="text"
           value={inputValue}
@@ -52,7 +48,7 @@ function Todo() {
           onChange={handleOnChange}
         />
         <button
-          className="btn btn-outline-secondary "
+          className="btn btn-outline-secondary mx-2"
           type="button"
           id="button-addon2"
           onClick={handleAddTodo}
@@ -61,33 +57,37 @@ function Todo() {
         </button>
       </div>
       <h1 className="my-5">Todo List</h1>
-      <ul style={{listStyleType:"none"}}>
+      <ul style={{ listStyleType: "none" }}>
         {todos.length === 0 ? (
           <div className="">
             <h4 style={{ color: 'red' }}>No todos</h4>
           </div>
         ) : (
           todos.map(todo => (
-            <li className="justify-content-between" style={{textDecoration: todo.isCompleted ? "line-through" : ""}} key={todo.id}>
-              <input
-                className="form-check-input"
-                onChange={() => handleCheckbox(todo.id)}
-                type="checkbox"
-                checked={todo.isCompleted}
-              />
-              {todo.task}
-              <button
-                className="btn btn-outline-secondary mx-4 my-3"
-                onClick={(e) => handleEdit(e, todo.id)}
-              >
-                Edit
-              </button>
-              <button
-                className="btn btn-outline-secondary mx-2"
-                onClick={(e) => handleDelete(e, todo.id)}
-              >
-                Delete
-              </button>
+            <li className="list-unstyled d-flex align-items-center justify-content-between" style={{ textDecoration: todo.isCompleted ? "line-through" : "" }} key={todo.id}>
+              <div className="input">
+                <input
+                  className="form-check-input mx-1"
+                  onChange={() => handleCheckbox(todo.id)}
+                  type="checkbox"
+                  checked={todo.isCompleted}
+                />
+                {todo.task}
+              </div>
+              <div className="button">
+                <button
+                  className="btn btn-outline-secondary mx-4 my-3"
+                  onClick={() => handleEdit(todo.id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn btn-outline-secondary mx-2"
+                  onClick={() => handleDelete(todo.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </li>
           ))
         )}

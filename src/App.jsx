@@ -2,12 +2,17 @@ import './Style.css'
 import Navbar from './Componenst/Navbar'
 import Footer from './Componenst/Footer'
 import Todo from './Componenst/Todo'
+import React, { useState } from 'react';
 function App() {
+  const [isBlackTheme, setIsBlackTheme] = useState(true);
+  const toggleTheme = () => {
+    setIsBlackTheme(!isBlackTheme);
+  };
   return (
     <>
     <div className="app-body">
-    <Navbar/>
-    <Todo/>
+    <Navbar isBlackTheme={isBlackTheme} toggleTheme={toggleTheme}/>
+    <Todo isBlackTheme={isBlackTheme}/>
     <Footer/>
     </div>
 
