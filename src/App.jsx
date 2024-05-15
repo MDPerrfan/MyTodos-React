@@ -10,7 +10,7 @@ function App() {
   };
   return (
     <>
-    <div className="app-body">
+    <div className={`${isBlackTheme ? 'black-theme' : 'white-theme'}`}>
     <Navbar isBlackTheme={isBlackTheme} toggleTheme={toggleTheme}/>
     <Todo isBlackTheme={isBlackTheme}/>
     <Footer/>

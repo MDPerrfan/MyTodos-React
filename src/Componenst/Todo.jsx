@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 function Todo(props) {
   const [todos, setTodos] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [showFinished, setshowFinished] = useState(true)
+
+  useEffect(() => {
+    let todoString = localStorage.getItem("todos")
+    if(todoString){
+      let todos = JSON.parse(localStorage.getItem("todos")) 
+      setTodos(todos)
+    }
+  }, [])
   
+
+  const saveToLS = (params) => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }
+
+  const toggleFinished = (e) => {
+    setshowFinished(!showFinished)
+  }
   const handleOnChange = event => {
     setInputValue(event.target.value);
   };
@@ -18,10 +35,12 @@ function Todo(props) {
       setTodos([...todos, newTodo]);
     }
     setInputValue('');
+    saveToLS()
   };
 
   const handleDelete = (id) => {
     setTodos(todos.filter(todo => todo.id !== id));
+    saveToLS()
   };
 
   const handleEdit = (id) => {
@@ -29,6 +48,7 @@ function Todo(props) {
     setInputValue(editedTodo.task);
     let newTodos = todos.filter(item => item.id !== id);
     setTodos(newTodos);
+    saveToLS()
   };
 
   const handleCheckbox = (id) => {
@@ -36,9 +56,11 @@ function Todo(props) {
     let newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
+    saveToLS()
   };
   return (
     <div className={`container todo-section ${props.isBlackTheme ? 'black-theme' : 'white-theme'}`}>
+      <h1>Manage Your Todos At One Place</h1>
       <div className="d-flex">
         <input
           type="text"
@@ -56,7 +78,9 @@ function Todo(props) {
           ADD
         </button>
       </div>
-      <h1 className="my-5">Todo List</h1>
+      <input className='my-4' id='show' onChange={toggleFinished} type="checkbox" checked={showFinished} /> 
+      <label className='mx-2' htmlFor="show">Show Finished</label>
+      <h2 className="my-5">Todo List</h2>
       <ul style={{ listStyleType: "none" }}>
         {todos.length === 0 ? (
           <div className="">
