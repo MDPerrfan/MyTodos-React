@@ -87,7 +87,9 @@ function Todo(props) {
             <h4 style={{ color: 'red' }}>No todos</h4>
           </div>
         ) : (
-          todos.map(todo => (
+          todos
+          .filter(todo => (showFinished ? true : !todo.isCompleted))
+          .map(todo => (
             <li className="list-unstyled d-flex align-items-center justify-content-between" style={{ textDecoration: todo.isCompleted ? "line-through" : "" }} key={todo.id}>
               <div className="input">
                 <input
